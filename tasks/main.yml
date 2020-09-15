@@ -32,3 +32,13 @@
 - name: Setup OPA server
   include_tasks: setup-opa.yml
   tags: setup
+
+- name: Upload data to OPA
+  include_tasks: upload-data.yml
+  tags: upload_data
+  when: upload_data | bool
+
+- name: Upload policies to OPA
+  include_tasks: upload-policy.yml
+  tags: upload_policy
+  when: upload_policy | bool
