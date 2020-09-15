@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  gather_facts: false # Set false because theres no python installed in the Ubuntu image
+  hosts: all
+  tasks:
+    - name: Run "apt-get update"
+      raw: export DEBIAN_FRONTEND=noninteractive; export TZ=America/Sao_Paulo; apt-get -qq update && apt-get -qq install -y python python3-apt make git golang systemctl
+      args:
+        executable: /bin/bash
