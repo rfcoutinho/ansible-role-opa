@@ -1,2 +1,34 @@
 ---
-# tasks file for ansible-role-opa
+- name: Download install method
+  block:
+    - name: Download OPA bin from GitHub release
+      get_url:
+        url: "{{ opa.url }}/v{{ opa.version }}/{{ opa.architecture }}" 
+        dest: "{{ opa.install_dir }}/opa" 
+        mode: "0755"
+  when: install_method == "download" 
+
+- name: Clone install method
+  block:
+    - name: Clone Open Policy Agent repo
+      git:
+        repo: "https://github.com/open-policy-agent/opa" 
+        dest: "{{ opa.build_path }}"
+        version: "v{{ opa.version }}"
+
+    - name: Build Open Policy Agent version {{ opa.version }}
+      make:
+        chdir: "{{ opa.build_path }}"
+        target: build-linux
+
+    - name: Copy OPA binary to {{ opa.install_dir }}
+      copy:
+        src: "{{ opa.build_path }}/_release/{{ opa.version }}/{{ opa.architecture }}"
+        dest: "{{ opa.install_dir }}/opa"
+        mode: "755"
+        remote_src: yes
+  when: install_method == "build"
+
+- name: Setup OPA server
+  include_tasks: setup-opa.yml
+  tags: setup
