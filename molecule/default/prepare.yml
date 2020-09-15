@@ -1,6 +1,6 @@
 ---
 - name: Prepare
-  gather_facts: false # Set false because theres no python installed in the Ubuntu image
+  gather_facts: false  # Set false because theres no python installed in the Ubuntu image
   hosts: all
   tasks:
     - name: Run "apt-get update"

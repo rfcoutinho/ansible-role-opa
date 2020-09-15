@@ -26,7 +26,7 @@
         src: "{{ opa.build_path }}/_release/{{ opa.version }}/{{ opa.architecture }}"
         dest: "{{ opa.install_dir }}/opa"
         mode: "755"
-        remote_src: yes
+        remote_src: true
   when: install_method == "build"
 
 - name: Setup OPA server

@@ -20,6 +20,6 @@
 - name: Enable OPA service
   systemd:
     name: opa
-    enabled: yes
+    enabled: true
   notify:
     - Start OPA service
