@@ -1,32 +1,42 @@
-![ansible Lint](https://github.com/rfcoutinho/ansible-role-opa/workflows/Ansible%20Lint/badge.svg)
+![Ansible Lint](https://github.com/rfcoutinho/ansible-role-opa/workflows/Ansible%20Lint/badge.svg)  
+
 Ansible Role OPA
 =========
 
-A brief description of the role goes here.
+This role installs the [Open Policy Agent](https://www.openpolicyagent.org/) and can also be used to manage your data and policies [configuration](https://www.openpolicyagent.org/docs/latest/configuration/) file
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+If `install_method: "build"` this role will make use of `make` and `golang`
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| variables      | default value  |  type  |  description  |
+|----------------|:--------------:|:------:|:--------------|
+| config_mode    | false          | bool   | Enable OPA to run with a [configuration file](https://www.openpolicyagent.org/docs/latest/configuration/#example)|
+| upload_data    | false          | bool   | Upload you data files within `/templates/data`
+| upload_policy  | false          | bool   | Upload you data files within `/templates/policies`
+| install_method | download       | string | Preferred installtion method: Set `build` to do it from source
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+N/A
+
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+---
+- hosts: "{{ target_host }}"
+  become_method: sudo
+  roles:
+    - ansible-role-lynis
+```
 
 License
 -------
