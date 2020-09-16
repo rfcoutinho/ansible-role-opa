@@ -1,0 +1,25 @@
+---
+- name: Create OPA configuration directory
+  file:
+    path: /etc/opa
+    state: directory
+    mode: "0755"
+
+- name: Deploy OPA configuration file
+  template:
+    src: config/config.yml.j2
+    dest: /etc/opa/config.yml
+    mode: "0755"
+
+- name: Create OPA service
+  template:
+    src: opa/opa.service.j2
+    dest: /etc/systemd/system/opa.service
+    mode: "0755"
+
+- name: Enable OPA service
+  systemd:
+    name: opa
+    enabled: true
+  notify:
+    - Start OPA service

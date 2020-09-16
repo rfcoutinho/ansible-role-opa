@@ -1,0 +1,10 @@
+[Unit]
+Description=opa server
+
+[Service]
+ExecStart={{ opa.install_dir }}/opa run -s {% if config_mode == true %}-c /etc/opa/config.yml {% endif %}  
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

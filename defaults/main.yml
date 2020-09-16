@@ -1,0 +1,13 @@
+---
+# Configure role default behaviour
+config_mode: false  # true if you want to run opa server with a config.yml file
+upload_data: false
+upload_policy: false
+install_method: "download"
+
+opa:
+  url: https://github.com/open-policy-agent/opa/releases/download
+  architecture: opa_linux_amd64
+  build_path: /opt/opa
+  version: 0.23.0
+  install_dir: /usr/local/bin

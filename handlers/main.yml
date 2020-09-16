@@ -1,0 +1,5 @@
+---
+- name: Start OPA service
+  systemd:
+    name: opa
+    state: started

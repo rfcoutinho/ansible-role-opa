@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Rafael Coutinho
+  description: Install and configure Open Policy Agent
+  license:
+    - GPL-3.0
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - opa
+dependencies: []
