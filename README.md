@@ -1,3 +1,4 @@
+![ansible Lint](https://github.com/rfcoutinho/ansible-role-opa/workflows/Ansible%20Lint/badge.svg)
 Ansible Role OPA
 =========
 
