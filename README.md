@@ -35,7 +35,7 @@ Example Playbook
 - hosts: "{{ target_host }}"
   become_method: sudo
   roles:
-    - ansible-role-lynis
+    - ansible-role-opa
 ```
 
 License
